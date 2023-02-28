@@ -37,7 +37,9 @@ import { ClinicFlowProviderStatsPatientListComponent } from './../../hiv-care-li
 import { DataAnalyticsHivGainsAndLossesComponent } from './hiv-monthly-gains-and-losses/data-analytics-hiv-gains-and-losses.component';
 import { PatientGainsAndLosesPatientListComponent } from './../../hiv-care-lib/patient-gains-and-loses/patient-gains-and-loses-patient-list/patient-gains-and-loses-patient-list.component';
 import { ContactTestingComponent } from './contact-testing/contact-testing/contact-testing.component';
-
+import { FamilyTestingContactComponent } from 'src/app/hiv-care-lib/family-testing/family-testing-contact-list.component';
+import { AddContactTraceComponent } from 'src/app/hiv-care-lib/family-testing/contact-trace/add-contact-trace.component';
+import { EditContactTraceComponent } from 'src/app/hiv-care-lib/family-testing/contact-trace/edit-contact-trace.component';
 const routes: Routes = [
   {
     path: 'clinic-flow',
@@ -255,6 +257,18 @@ const routes: Routes = [
       {
         path: '',
         component: ContactTestingComponent
+      },
+      {
+        path: 'contact-list',
+        component: FamilyTestingContactComponent
+      },
+      {
+        path: 'contact-list/add-contact-trace',
+        component: AddContactTraceComponent
+      },
+      {
+        path: 'contact-list/edit-contact-trace',
+        component: EditContactTraceComponent
       }
     ]
   }

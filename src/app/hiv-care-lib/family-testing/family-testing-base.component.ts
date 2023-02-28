@@ -142,11 +142,13 @@ export class FamilyTestingBaseComponent implements OnInit {
     },
     {
       name: 'Screened and reviewed for children',
-      def: 'All index clients who have been screened for children 19 years and below'
+      def:
+        'All index clients who have been screened for children 19 years and below'
     },
     {
       name: 'Screened not reviewed for children',
-      def: 'All index clients who have been screened but children status was not captured'
+      def:
+        'All index clients who have been screened but children status was not captured'
     },
     {
       name: 'Clients not screened',
@@ -166,7 +168,8 @@ export class FamilyTestingBaseComponent implements OnInit {
     },
     {
       name: 'Uncategorized contacts',
-      def: 'Clients whose relationship to index was not captured, should be used for cleanup'
+      def:
+        'Clients whose relationship to index was not captured, should be used for cleanup'
     },
     { name: 'All contacts', def: 'All contacts elicited' },
     { name: 'Eligible for Testing', def: 'Contacts eligible for testing' },
@@ -273,7 +276,7 @@ export class FamilyTestingBaseComponent implements OnInit {
   }
 
   public onClickCancel(event) {
-    if(!event) {
+    if (!event) {
       this.showIndicatorDefinitions = false;
     }
   }
