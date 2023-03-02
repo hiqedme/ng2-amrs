@@ -84,7 +84,7 @@ export class FamilyTestingPatientlistComponent implements OnInit {
       headerName: 'ART Initiation Date'
     },
     {
-      field: 'patient_program_name',
+      field: 'patient_program',
       headerName: 'Patient Program'
     },
     {

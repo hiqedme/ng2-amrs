@@ -23,6 +23,7 @@ export class FamilyTestingService {
 
   public getFamilyTestingReportData(params: any): Observable<any> {
     const urlParams = this.getUrlRequestParams(params);
+
     return this.http
       .get(`${this.url}patient-family-history`, {
         params: urlParams
@@ -64,6 +65,7 @@ export class FamilyTestingService {
     if (params.programType && params.programType !== '') {
       urlParams = urlParams.set('programType', params.programType);
     }
+
     if (params.childStatus && params.childStatus !== '') {
       urlParams = urlParams.set('child_status', params.childStatus);
     }
@@ -81,6 +83,7 @@ export class FamilyTestingService {
   public getFamilyTreePatientList(params): Observable<any> {
     const urlParams = this.getUrlRequestParams(params);
     const url = this.url + 'family-history-patient-list';
+
     return this.http
       .get(url, {
         params: urlParams

@@ -228,6 +228,7 @@ export class FamilyTestingBaseComponent implements OnInit {
     }
     this.isLoading = true;
     this.familyTestingService
+
       .getFamilyTreePatientList(this.params)
       .subscribe((data) => {
         if (data.error) {
@@ -408,8 +409,10 @@ export class FamilyTestingBaseComponent implements OnInit {
 
   public getSelectedPrograms(programsUuids): string {
     this.resetStartIndex();
+
     if (!programsUuids || programsUuids.length === 0) {
       this.programs = '';
+
       return this.programs;
     }
 
@@ -424,6 +427,7 @@ export class FamilyTestingBaseComponent implements OnInit {
     }
 
     this.programs = selectedPrograms.length > 0 ? selectedPrograms : undefined;
+
     return this.programs;
   }
 }
