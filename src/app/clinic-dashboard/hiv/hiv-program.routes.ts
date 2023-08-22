@@ -39,6 +39,7 @@ import { ChartAbstractionPatientlistComponent } from 'src/app/hiv-care-lib/dqa-r
 
 import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
 import { PrepReportComponent } from './prep-report/prep-report.component';
+
 import { PrepReportPatientListComponent } from 'src/app/hiv-care-lib/prep-report/prep-report-patient-list/prep-report-patient-list.component';
 import { MonthlyReportComponent } from 'src/app/hiv-care-lib/monthly-report/monthly-report.component';
 // tslint:disable-next-line: max-line-length
@@ -59,6 +60,7 @@ import { MOH412ClinicDashboardPatientListComponent } from './moh-412-report/moh-
 import { ClinicDashboardCovid19ReportComponent } from './covid-19-report/clinic-dashboard-covid-19-report.component';
 import { Covid19ReportPatientListComponent } from './../../hiv-care-lib/covid-19-report/covid-19-report-patient-list/covid-19-report-patient-list.component';
 import { PreAppointmentOutreachComponent } from '../general/pre-appointment-outreach/pre-appointment-outreach.component';
+import { MnchReportComponent } from './mnch-report/mnch-report.component';
 
 const routes: Routes = [
   {
@@ -270,6 +272,19 @@ const routes: Routes = [
             ]
           },
           {
+            path: 'mnch-report',
+            children: [
+              {
+                path: '',
+                component: MnchReportComponent
+              },
+              {
+                path: 'patient-list',
+                component: PrepReportPatientListComponent
+              }
+            ]
+          },
+          {
             path: 'patient-gains-and-loses',
             children: [
               {
@@ -452,6 +467,19 @@ const routes: Routes = [
           {
             path: 'patient-list',
             component: Covid19ReportPatientListComponent
+          }
+        ]
+      },
+      {
+        path: 'mnch-report',
+        children: [
+          {
+            path: '',
+            component: MnchReportComponent
+          },
+          {
+            path: 'patient-list',
+            component: PrepReportPatientListComponent
           }
         ]
       }

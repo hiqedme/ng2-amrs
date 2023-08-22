@@ -41,6 +41,7 @@ import { TxNewReportComponent } from './datim-reports/tx-new-report/tx-new-repor
 import { TxCurrReportComponent } from './datim-reports/tx-curr-report.component';
 import { TxMmdReportComponent } from './datim-reports/tx-mmd-report.component';
 import { TxRttReportComponent } from './datim-reports/tx-rtt-report.component';
+import { MnchReportComponent } from 'src/app/clinic-dashboard/hiv/mnch-report/mnch-report.component';
 
 @NgModule({
   imports: [
@@ -80,6 +81,7 @@ import { TxRttReportComponent } from './datim-reports/tx-rtt-report.component';
     HivSummaryMonthlyIndicatorsComponent,
     SurgeReportComponent,
     PrepReportComponent,
+    MnchReportComponent,
     MOH412HIVDataAnalyticsComponent,
     MOH412HIVDataAnalyticsPatientListComponent,
     IPTReportComponent,

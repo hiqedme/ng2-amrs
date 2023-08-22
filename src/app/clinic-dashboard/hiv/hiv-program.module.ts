@@ -82,6 +82,7 @@ import { DefaulterListFilterComponent } from './../general/defaulter-list/defaul
 import { ClinicDashboardCovid19ReportComponent } from './covid-19-report/clinic-dashboard-covid-19-report.component';
 import { PreAppointmentOutreachResourceService } from 'src/app/etl-api/pre-appointment-outreach-resource.service';
 import { PreAppointmentOutreachComponent } from '../general/pre-appointment-outreach/pre-appointment-outreach.component';
+import { MnchReportComponent } from './mnch-report/mnch-report.component';
 
 @NgModule({
   imports: [
@@ -174,6 +175,7 @@ import { PreAppointmentOutreachComponent } from '../general/pre-appointment-outr
     ClinicDashboardRetentionReportComponent,
     ClinicDashboardCaseManagementComponent,
     PrepReportComponent,
+    MnchReportComponent,
     ClinicDashboardHeiReportComponent,
     HIVListsMicroFrontendComponent,
     FamilyTestingComponent,
