@@ -101,21 +101,86 @@ export class MOHReportService {
       const sectionIndicatorLabels = [];
       const sectionIndicatorValues = [];
       _.each(section.indicators, (sectionIndicator: any, index) => {
-        sectionIndicatorLabels.push([sectionIndicator.label]);
+        const label = sectionIndicator.label;
+
+        // Check if the label contains '+', make it bold
+        const modifiedLabel = label.includes('M+')
+          ? { text: label, bold: true }
+          : label;
+
+        sectionIndicatorLabels.push([modifiedLabel]);
+        // sectionIndicatorLabels.push([sectionIndicator.label]);
         let indicatorValue = '-';
+        let f_indicatorValue = '-';
+        let m_indicatorValue = '-';
+        let m_refValue = '-';
+        let refValue = '-';
+        let total_indicatorValue = '-';
+        // Indicator values
+
+        const m_indicatorDefinition = sectionIndicator.indicator[1];
         const indicatorDefinition = sectionIndicator.indicator;
+        const f_indicatorDefinition = sectionIndicator.indicator[0];
+        const total_indicatorDefinition =
+          rowData[m_indicatorDefinition] + rowData[f_indicatorDefinition];
 
         if (
-          rowData[indicatorDefinition] ||
-          rowData[indicatorDefinition] === 0
+          (!sectionIndicator.indicator[0] ||
+            sectionIndicator.indicator[0].length === 1) &&
+          rowData[sectionIndicator.indicator]
         ) {
-          indicatorValue = rowData[indicatorDefinition];
+          total_indicatorValue = rowData[indicatorDefinition];
+        } else {
+          if (
+            rowData[m_indicatorDefinition] ||
+            rowData[m_indicatorDefinition] === 0
+          ) {
+            m_indicatorValue = rowData[m_indicatorDefinition];
+          }
+          if (
+            rowData[f_indicatorDefinition] ||
+            rowData[f_indicatorDefinition] === 0
+          ) {
+            f_indicatorValue = rowData[f_indicatorDefinition];
+          }
+          if (
+            rowData[indicatorDefinition] ||
+            rowData[indicatorDefinition] === 0
+          ) {
+            indicatorValue = rowData[indicatorDefinition];
+          }
+          if (total_indicatorDefinition || total_indicatorDefinition === 0) {
+            total_indicatorValue = total_indicatorDefinition;
+          }
+        }
+
+        // reference ID
+
+        // const ref = sectionIndicator.ref;
+        const m_ref = sectionIndicator.ref[1];
+        const f_ref = sectionIndicator.ref[0];
+
+        if (sectionIndicator.ref === 'subtitle') {
+          refValue = '-';
+        } else {
+          refValue = sectionIndicator.ref;
+        }
+
+        if (m_ref.length === 1 || f_ref.length === 1) {
+          m_refValue = refValue;
+        } else {
+          refValue = f_ref;
+          m_refValue = m_ref;
         }
         sectionIndicatorValues.push([
-          sectionIndicator.ref,
-          indicatorValue + ''
+          m_refValue,
+          m_indicatorValue + '',
+          refValue,
+          f_indicatorValue + '',
+          total_indicatorValue + ''
         ]);
       });
+      // display
 
       const sectionData = {
         sectionHead: section.sectionTitle,
@@ -126,6 +191,7 @@ export class MOHReportService {
       const reportSection = this.generateReportSection(sectionData);
       mainReportObject.content.push(reportSection);
     });
+    console.log(mainReportObject);
     return mainReportObject;
   }
 
@@ -257,12 +323,33 @@ export class MOHReportService {
             [
               {
                 table: {
-                  widths: ['*'],
+                  widths: [260, 10, 10, 50, 30, 40, 30, 30],
                   body: [
                     [
                       {
                         text: sectionData.sectionHead,
                         style: 'sectionhead'
+                      },
+                      {
+                        text: ''
+                      },
+                      {
+                        text: ''
+                      },
+                      {
+                        text: ''
+                      },
+                      {
+                        text: 'M'
+                      },
+                      {
+                        text: ''
+                      },
+                      {
+                        text: 'F'
+                      },
+                      {
+                        text: 'Total'
                       }
                     ]
                   ]
@@ -274,7 +361,7 @@ export class MOHReportService {
             {
               // layout: 'noBorders',
               table: {
-                widths: [310, 10, 10, '*'],
+                widths: [260, 10, 10, '*'],
                 body: [
                   [
                     {
@@ -292,7 +379,8 @@ export class MOHReportService {
                     [
                       {
                         table: {
-                          widths: [50, '*'],
+                          widths: [45, 30, 40, 30, 30],
+
                           body: sectionData.sectionDataValues
                         }
                       }
