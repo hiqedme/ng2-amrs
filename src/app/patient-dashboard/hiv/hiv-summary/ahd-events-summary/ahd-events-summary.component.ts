@@ -17,9 +17,12 @@ export class AhdEventsSummaryComponent implements OnInit, OnDestroy {
   isHEIActive = false;
   public hasError = false;
   public dataLoaded = false;
+  public tbStartdates: Array<any> = [];
+  public tbEnddates: Array<any> = [];
+  public cryptococallStartDates: Array<any> = [];
+  public cryptococallEndDates: Array<any> = [];
   public ahdSummary: Array<any> = [];
   public ahd: any;
-  public formattedahdSummary: Array<any> = [];
   public subscription: Subscription[] = [];
   public errors: any = [];
   public loadingAhdSummary = false;
@@ -73,20 +76,26 @@ export class AhdEventsSummaryComponent implements OnInit, OnDestroy {
               if (data.hasOwnProperty(result)) {
                 const hivsum = data[result];
                 const tb_start_date = hivsum.tb_tx_start_date;
-                const tb_end_date = hivsum.tb_tx_start_date;
-                const uniqueDates = [];
+                const tb_end_date = hivsum.tb_tx_end_date;
 
-                if (!uniqueDates.includes(tb_start_date)) {
-                  uniqueDates.push(tb_start_date);
+                if (!this.tbStartdates.includes(tb_start_date)) {
+                  this.tbStartdates.push(tb_start_date);
+                  console.log('this.tbStartdates', this.tbStartdates);
                 }
 
-                if (!uniqueDates.includes(tb_end_date)) {
-                  uniqueDates.push(tb_end_date);
+                if (!this.tbEnddates.includes(tb_end_date)) {
+                  this.tbEnddates.push(tb_end_date);
                 }
 
-                console.log('uniqueDates', uniqueDates);
+                if (!this.cryptococallStartDates.includes(tb_start_date)) {
+                  this.tbStartdates.push(tb_start_date);
+                }
+
+                if (!this.cryptococallEndDates.includes(tb_end_date)) {
+                  this.tbEnddates.push(tb_end_date);
+                }
+
                 this.ahdSummary.push(hivsum);
-                console.log('this.ahdSummary', this.ahdSummary);
               }
             }
           }
