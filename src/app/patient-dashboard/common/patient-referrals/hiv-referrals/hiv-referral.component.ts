@@ -208,12 +208,12 @@ export class HivReferralComponent implements OnInit, OnChanges, OnDestroy {
     const enrollmentsPayload = hivPrograms.map(
       (hivProgram: ProgramEnrollment) => {
         if (
-          hivProgram.program.uuid === Programs.STANDARD_HIV_PROGRAM.uuid &&
+          // hivProgram.program.uuid === Programs.STANDARD_HIV_PROGRAM.uuid &&
           this.referredHivProgram.uuid === Programs.PMTCT_PROGRAM.uuid
         ) {
         } else if (
-          hivProgram.program.uuid === Programs.PMTCT_PROGRAM.uuid &&
-          this.referredHivProgram.uuid === Programs.STANDARD_HIV_PROGRAM.uuid
+          hivProgram.program.uuid === Programs.PMTCT_PROGRAM.uuid
+          // this.referredHivProgram.uuid === Programs.STANDARD_HIV_PROGRAM.uuid
         ) {
           referredToStandard = true;
         } else {
@@ -233,8 +233,8 @@ export class HivReferralComponent implements OnInit, OnChanges, OnDestroy {
       this.completeHivPrograms(hivPrograms)
         .then((result: any) => {
           if (
-            referredToStandard &&
-            this.referredHivProgram.uuid === Programs.STANDARD_HIV_PROGRAM.uuid
+            referredToStandard
+            // this.referredHivProgram.uuid === Programs.STANDARD_HIV_PROGRAM.uuid
           ) {
             return this.referToProgram(enrollmentPayload);
           } else {

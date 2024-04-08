@@ -111,27 +111,27 @@ export class PatientTransferService {
       ) {
         // Enhanced adherence HIV Program
         _.merge(queryParams, {
-          program: Programs.VIREMIA_PROGRAM.uuid,
+          program: Programs.VIREMIA_MODEL.uuid,
           notice: 'adherence'
         });
         const location: any = this.componentRef.userDefaultPropertiesService.getCurrentUserDefaultLocationObject();
         localStorage.setItem('transferLocation', location.uuid);
       }
       // HIV Differentiated Program
-      if (
-        _.includes(
-          _.first(referralQuestion).control.value,
-          '7c6f0599-3e3e-4f42-87a2-2ce66f1e96d0'
-        )
-      ) {
-        // HIV Differentiated Program
-        _.merge(queryParams, {
-          program: Programs.HIV_DIFFERENTIATED_CARE_PROGRAM.uuid,
-          notice: 'dc'
-        });
-        const location: any = this.componentRef.userDefaultPropertiesService.getCurrentUserDefaultLocationObject();
-        localStorage.setItem('transferLocation', location.uuid);
-      }
+      // if (
+      //   _.includes(
+      //     _.first(referralQuestion).control.value,
+      //     '7c6f0599-3e3e-4f42-87a2-2ce66f1e96d0'
+      //   )
+      // ) {
+      //   // HIV Differentiated Program
+      //   _.merge(queryParams, {
+      //     program: Programs.HIV_DIFFERENTIATED_CARE_PROGRAM.uuid,
+      //     notice: 'dc'
+      //   });
+      //   const location: any = this.componentRef.userDefaultPropertiesService.getCurrentUserDefaultLocationObject();
+      //   localStorage.setItem('transferLocation', location.uuid);
+      // }
     }
     if (internalMovementQuestion.length > 0) {
       // Internal Movement
@@ -139,7 +139,7 @@ export class PatientTransferService {
       if (this.containsInternalMovementAnwer(internalMovementQuestion)) {
         // Standard HIV Program
         _.merge(queryParams, {
-          program: Programs.STANDARD_HIV_PROGRAM.uuid,
+          program: Programs.STANDARD_CARE_MODEL.uuid,
           notice: 'sh'
         });
         this.transferState.next({

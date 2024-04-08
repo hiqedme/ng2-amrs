@@ -128,9 +128,9 @@ export class HivReferralService {
   }
   private getAutoEnrollmentEncounterType(programUuid: string): string {
     let autoEnrollmentUuid = '';
-    if (programUuid === Programs.STANDARD_HIV_PROGRAM.uuid) {
+    if (programUuid === Programs.STANDARD_CARE_MODEL.uuid) {
       autoEnrollmentUuid = this.STANDARD_HIV_AUTO_ENROLLMENT_ENCOUNTER;
-    } else if (programUuid === Programs.PMTCT_PROGRAM.uuid) {
+    } else if (programUuid === Programs.STANDARD_PMTCT_MODEL.uuid) {
       autoEnrollmentUuid = this.PMTCT_AUTO_ENROLLMENT_ENCOUNTER;
     }
     return autoEnrollmentUuid;

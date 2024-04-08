@@ -103,156 +103,7 @@
       "shared-routes-class": "hiv",
       "routes": []
     },
-    {
-      "programName": "Standard HIV Treatment",
-      "programUuid": "781d85b0-1359-11df-a1f1-0026b9348838",
-      "baseRoute": "781d85b0-1359-11df-a1f1-0026b9348838",
-      "alias": "hiv",
-      "published": true,
-      "requiresPatientEnrollment": true,
-      "shared-routes-class": "hiv",
-      "routes": []
-    },
-    {
-      "programName": "Pharmacy",
-      "programUuid": "8c1a3a68-d91d-488d-8663-ad572673232b",
-      "baseRoute": "8c1a3a68-d91d-488d-8663-ad572673232b",
-      "alias": "hiv",
-      "published": true,
-      "requiresPatientEnrollment": true,
-      "shared-routes-class": "hiv",
-      "routes": []
-    },
-    {
-      "programName": "HIV Transit",
-      "programUuid": "96ba279b-b23b-4e78-aba9-dcbd46a96b7b",
-      "baseRoute": "96ba279b-b23b-4e78-aba9-dcbd46a96b7b",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV PEP",
-      "programUuid": "96047aaf-7ab3-45e9-be6a-b61810fe617d",
-      "baseRoute": "96047aaf-7ab3-45e9-be6a-b61810fe617d",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV PrEP",
-      "programUuid": "c19aec66-1a40-4588-9b03-b6be55a8dd1d",
-      "baseRoute": "c19aec66-1a40-4588-9b03-b6be55a8dd1d",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV Differentiated Care",
-      "programUuid": "334c9e98-173f-4454-a8ce-f80b20b7fdf0",
-      "baseRoute": "334c9e98-173f-4454-a8ce-f80b20b7fdf0",
-      "alias": "hiv",
-      "published": true,
-      "requiresPatientEnrollment": true,
-      "shared-routes-class": "hiv",
-      "routes": []
-    },
-    {
-      "programName": "HIV Express Care",
-      "programUuid": "781d8880-1359-11df-a1f1-0026b9348838",
-      "baseRoute": "781d8880-1359-11df-a1f1-0026b9348838",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV Retention",
-      "programUuid": "c6bf3625-de80-4a88-a913-38273e300a55",
-      "baseRoute": "c6bf3625-de80-4a88-a913-38273e300a55",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV ACTG",
-      "programUuid": "4480c782-ef05-4d88-b2f8-c892c99438f6",
-      "baseRoute": "4480c782-ef05-4d88-b2f8-c892c99438f6",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "PMTCT",
-      "programUuid": "781d897a-1359-11df-a1f1-0026b9348838",
-      "baseRoute": "781d897a-1359-11df-a1f1-0026b9348838",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV Resistance Clinic",
-      "programUuid": "f7793d42-11ac-4cfd-9b35-e0a21a7a7c31",
-      "baseRoute": "f7793d42-11ac-4cfd-9b35-e0a21a7a7c31",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV Social Work",
-      "programUuid": "a685c057-d475-42ef-bb33-8b0c1d73b122",
-      "baseRoute": "a685c057-d475-42ef-bb33-8b0c1d73b122",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV Nutrition",
-      "programUuid": "03552f68-8233-4793-8353-3db1847bb617",
-      "baseRoute": "03552f68-8233-4793-8353-3db1847bb617",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "DTG Pharmaco-Vigilance",
-      "programUuid": "6ff0a6dc-ef8f-467a-86fc-9d9b263d8761",
-      "baseRoute": "6ff0a6dc-ef8f-467a-86fc-9d9b263d8761",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
-    {
-      "programName": "HIV Exposed Infant",
-      "programUuid": "a8e7c30d-6d2f-401c-bb52-d4433689a36b",
-      "baseRoute": "a8e7c30d-6d2f-401c-bb52-d4433689a36b",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
+
     {
       "programName": "Cervical Cancer Screening",
       "programUuid": "cad71628-692c-4d8f-8dac-b2e20bece27f",
@@ -528,16 +379,7 @@
       "requiresPatientEnrollment": true,
       "routes": []
     },
-    {
-      "programName": "Viremia",
-      "programUuid": "c4246ff0-b081-460c-bcc5-b0678012659e",
-      "baseRoute": "c4246ff0-b081-460c-bcc5-b0678012659e",
-      "alias": "hiv",
-      "published": true,
-      "shared-routes-class": "hiv",
-      "requiresPatientEnrollment": true,
-      "routes": []
-    },
+
     {
       "programName": "Hypertension Referral",
       "programUuid": "2114265d-dcc4-4440-9059-fe194a5f23a6",
@@ -669,7 +511,7 @@
       "routes": []
     },
     {
-      "programName": "PEER LED FACILITY ART GROUP MODEL",
+      "programName": "PEER LED FACILITY ART GROUP",
       "programUuid": "a74f5be3-19bf-44a9-b9d8-14ff5587df37",
       "baseRoute": "a74f5be3-19bf-44a9-b9d8-14ff5587df37",
       "alias": "hiv",
@@ -679,7 +521,7 @@
       "routes": []
     },
     {
-      "programName": "HCW FACILITY ART DISTRIBUTION GROUP MODEL",
+      "programName": "HCW FACILITY ART DISTRIBUTION GROUP",
       "programUuid": "10275c77-e317-4b48-b95e-279053d55cd0",
       "baseRoute": "10275c77-e317-4b48-b95e-279053d55cd0",
       "alias": "hiv",
@@ -689,7 +531,7 @@
       "routes": []
     },
     {
-      "programName": "MULTI MONTH DISPENSING MODEL",
+      "programName": "MULTI MONTH DISPENSING",
       "programUuid": "e352cb61-5889-4ba3-8405-d975e4c5e89e",
       "baseRoute": "e352cb61-5889-4ba3-8405-d975e4c5e89e",
       "alias": "hiv",
@@ -699,7 +541,7 @@
       "routes": []
     },
     {
-      "programName": "PEER LED COMMUNITY ART GROUP MODEL",
+      "programName": "PEER LED COMMUNITY ART GROUP",
       "programUuid": "6d5d10b3-ea80-4ee5-a58e-5f8a6f88ae93",
       "baseRoute": "6d5d10b3-ea80-4ee5-a58e-5f8a6f88ae93",
       "alias": "hiv",
@@ -710,7 +552,7 @@
     },
 
     {
-      "programName": "HCW COMMUNITY ART DISTRIBUTION GROUP MODEL",
+      "programName": "HCW COMMUNITY ART DISTRIBUTION GROUP",
       "programUuid": "7299b930-4866-437e-a879-aefbb5bf2e0b",
       "baseRoute": "7299b930-4866-437e-a879-aefbb5bf2e0b",
       "alias": "hiv",
@@ -720,7 +562,7 @@
       "routes": []
     },
     {
-      "programName": "INDIVIDUAL DDD GROUP MODEL",
+      "programName": "INDIVIDUAL DDD GROUP",
       "programUuid": "6af0e0eb-7172-4d94-92fd-aa987bb43250",
       "baseRoute": "6af0e0eb-7172-4d94-92fd-aa987bb43250",
       "alias": "hiv",
@@ -730,7 +572,7 @@
       "routes": []
     },
     {
-      "programName": "COMMUNITY PHARMACY MODEL",
+      "programName": "COMMUNITY PHARMACY",
       "programUuid": "e33b0107-c248-42b4-8c94-4525fcc0c86e",
       "baseRoute": "e33b0107-c248-42b4-8c94-4525fcc0c86e",
       "alias": "hiv",
@@ -740,7 +582,7 @@
       "routes": []
     },
     {
-      "programName": "FAMILY COMMUNITY ART GROUP MODEL",
+      "programName": "FAMILY COMMUNITY ART GROUP",
       "programUuid": "f16403bb-c5df-46ba-afce-14f8aea2fabd",
       "baseRoute": "f16403bb-c5df-46ba-afce-14f8aea2fabd",
       "alias": "hiv",
@@ -751,7 +593,7 @@
     },
 
     {
-      "programName": "STANDARD_PMTCT_MODEL",
+      "programName": "STANDARD PMTCT",
       "programUuid": "80839137-9711-483f-a239-dfd383d020f6",
       "baseRoute": "80839137-9711-483f-a239-dfd383d020f6",
       "alias": "oncology",
@@ -761,7 +603,7 @@
       "routes": []
     },
     {
-      "programName": "PMTCT_DSD_MODEL",
+      "programName": "PMTCT DSD",
       "programUuid": "e950ade1-041d-4dda-b0cd-bb81dad8694e",
       "baseRoute": "e950ade1-041d-4dda-b0cd-bb81dad8694e",
       "alias": "oncology",

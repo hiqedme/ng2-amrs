@@ -30,8 +30,8 @@ import { FormUuids } from './../../../constants/forms.constants';
 
 @Injectable()
 export class FormentryReferralsHandlerService {
-  private PMTCT_PROGRAM: Program = Programs.PMTCT_PROGRAM;
-  private STANDARD_PROGRAM: Program = Programs.STANDARD_HIV_PROGRAM;
+  // private PMTCT_PROGRAM: Program = Programs.PMTCT_PROGRAM;
+  // private STANDARD_PROGRAM: Program = Programs.STANDARD_HIV_PROGRAM;
   private AHD_MODEL: Program = Programs.AHD_MODEL;
   constructor(
     public diffCareReferralService: DifferentiatedCareReferralService,
@@ -119,6 +119,7 @@ export class FormentryReferralsHandlerService {
     patient: Patient,
     programUuid: string
   ): Observable<any> {
+    console.log('RequestGetPatientVisit');
     const programConfigLoaded: Subject<any> = new Subject<any>();
     this.patientProgramResourceService
       .getPatientProgramVisitConfigs(patient.uuid)
@@ -321,11 +322,11 @@ export class FormentryReferralsHandlerService {
       referralMetaData: referralObj
     };
     if (referralObj.hasPmtctReferral) {
-      refProgram.uuid = this.PMTCT_PROGRAM.uuid;
-      refProgram.name = this.PMTCT_PROGRAM.name;
+      // refProgram.uuid = this.PMTCT_PROGRAM.uuid;
+      // refProgram.name = this.PMTCT_PROGRAM.name;
     } else {
-      refProgram.uuid = this.STANDARD_PROGRAM.uuid;
-      refProgram.name = this.STANDARD_PROGRAM.name;
+      // refProgram.uuid = this.STANDARD_PROGRAM.uuid;
+      // refProgram.name = this.STANDARD_PROGRAM.name;
     }
 
     refProgram.locationUuid = referralObj.hivReferralLocationUuid;

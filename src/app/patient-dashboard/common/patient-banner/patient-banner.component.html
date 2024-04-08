@@ -425,17 +425,65 @@
               Family History
             </button>
           </span>
-          <span *ngIf="patient?.person.age > 2 && patient?.person.age <= 9">
-            <button class="btn btn-primary">PAED PROGRAM</button>
+          <span
+            *ngIf="patient?.person.age >= 2 && patient?.person.age <= 9"
+            style="
+              color: darkviolet;
+              border: 1px solid darkviolet;
+              padding-left: 4px;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              padding-right: 0px;
+              cursor: pointer;
+            "
+          >
+          <span class="glyphicon glyphicon-bear"></span>
+            <span style="margin-left: -5px">PAED PROGRAM</span>
           </span>
-          <span *ngIf="patient?.person.age >= 10 && patient?.person.age <= 24">
-            <button class="btn btn-primary">AYP PROGRAM</button>
+          <span
+            *ngIf="patient?.person.age >= 10 && patient?.person.age <= 24"
+            style="
+              color: darkviolet;
+              border: 1px solid darkviolet;
+              padding-left: 4px;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              padding-right: 0px;
+              cursor: pointer;
+            "
+          >
+          <span class="glyphicon glyphicon-user"></span>
+            <span style="margin-left: -5px">AYP PROGRAM</span>
           </span>
-          <span *ngIf="patient?.person.age > 24">
-            <button class="btn btn-primary">ADULT PROGRAM</button>
+          <span
+            *ngIf="patient?.person.age > 24"
+            style="
+              color: darkviolet;
+              border: 1px solid darkviolet;
+              padding-left: 4px;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              padding-right: 0px;
+              cursor: pointer;
+            "
+          >
+          
+          <span class="glyphicon glyphicon-user"></span>
+            <span style="margin-left: -5px">ADULT PROGRAM</span>
           </span>
-          <span *ngIf="patient?.person.age >= 0 && patient?.person.age <= 2">
-            <button class="btn btn-primary">PMTCT PROGRAM</button>
+          <span
+            *ngIf="patient?.person.age >= 0 && patient?.person.age < 2"
+            style="
+              color: darkviolet;
+              border: 1px solid darkviolet;
+              padding-left: 4px;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              padding-right: 0px;
+              cursor: pointer;
+            "
+          ><span class="glyphicon glyphicon-user"></span>
+            <span style="margin-left: -5px">PMTCT PROGRAM</span>
           </span>
 
           <div

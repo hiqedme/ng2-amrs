@@ -718,11 +718,15 @@ export class FormentryComponent implements OnInit, OnDestroy {
         break;
       // start new programs
 
-      case '20838ff5-7a28-4877-889c-300155627a6f':
+      case 'd5e8c52f-7a38-44ed-a76a-bc771cc9b2ee':
         programToEnroll = '9d7422b1-af7b-4602-813e-953cfaf47e21';
         // name: 'FAST TRACK FACILITY CARE_MODEL',
         break;
 
+      case '20838ff5-7a28-4877-889c-300155627a6f':
+        programToEnroll = '9d7422b1-af7b-4602-813e-953cfaf47e21';
+        // name: 'FAST TRACK FACILITY CARE_MODEL',
+        break;
       case '379038fc-663f-42ed-87f3-9cdde7fb4339':
         programToEnroll = 'a74f5be3-19bf-44a9-b9d8-14ff5587df37';
         // name: 'PEER LED FACILITY ART GROUP MODEL',
@@ -781,25 +785,54 @@ export class FormentryComponent implements OnInit, OnDestroy {
     }
     return programToEnroll;
   }
-  public enrollPatientToNewModel(data: any): void {
+  public async enrollPatientToNewModel(data: any): Promise<void> {
     let programToEnroll = '';
-    let modelSelected = [];
-    modelSelected = this.form.searchNodeByQuestionId('dsdModel');
-    if (modelSelected.length === 0) {
-      // adultreturn form
-      modelSelected =
-        this.form.searchNodeByQuestionId('moreIntense') || // moreIntense
-        this.form.searchNodeByQuestionId('communityModel') || // community
-        this.form.searchNodeByQuestionId('facilityModel'); // facility
+    let modelSelected: any[] = [];
+    console.log('Form Filled: ', this.form);
+
+    const searchResult = await this.form.searchNodeByQuestionId('dsdModel');
+    if (Array.isArray(searchResult)) {
+      modelSelected = searchResult;
     }
+
+    if (modelSelected.length === 0) {
+      const moreIntenseResult = await this.form.searchNodeByQuestionId(
+        'moreIntense'
+      );
+      const communityModelResult = await this.form.searchNodeByQuestionId(
+        'communityModel'
+      );
+      const facilityModelResult = await this.form.searchNodeByQuestionId(
+        'facilityModel'
+      );
+
+      if (Array.isArray(moreIntenseResult)) {
+        modelSelected = moreIntenseResult;
+      } else if (Array.isArray(communityModelResult)) {
+        modelSelected = communityModelResult;
+      } else if (Array.isArray(facilityModelResult)) {
+        modelSelected = facilityModelResult;
+      }
+    }
+
     console.log('ModelSelected: ', modelSelected);
 
-    const modelUuid = modelSelected[0].initialValue.value.uuid;
-    programToEnroll = this.assignModel(modelUuid);
+    const modelUuid =
+      modelSelected[0] &&
+      modelSelected[0].initialValue &&
+      modelSelected[0].initialValue.value &&
+      modelSelected[0].initialValue.value.uuid;
+
+    if (!modelUuid) {
+      console.error('Error: Model UUID not found.');
+      return;
+    }
+
+    programToEnroll = await this.assignModelWithTimeout(modelUuid);
 
     console.log('programToEnroll:', programToEnroll);
 
-    const enrollpayload = {
+    const enrollPayload = {
       programUuid: programToEnroll,
       patient: this.patient,
       dateEnrolled: '',
@@ -808,26 +841,47 @@ export class FormentryComponent implements OnInit, OnDestroy {
         .uuid,
       enrollmentUuid: ''
     };
-    console.log('Response:', enrollpayload);
-    this.referralsHandler
-      .getPatientProgramVisitConfigs(this.patient, programToEnroll)
-      .pipe(take(1))
-      .subscribe((programConfig) => {
-        console.log('Response:', programConfig);
-        this.referralsHandler
-          .unenrollFromIncompatiblePrograms(this.patient, programConfig)
-          .subscribe((res) => {
-            this.programManagerService
-              .enrollPatient(enrollpayload)
-              .pipe(take(1))
-              .subscribe((program) => {
-                console.log('Response:', program);
-                this.checkGroupEnrollment(programToEnroll);
-              });
-            console.log('Response:', res);
-          });
-      });
+
+    console.log('ResponseEnrollPayload:', enrollPayload);
+
+    try {
+      this.referralsHandler
+        .getPatientProgramVisitConfigs(this.patient, programToEnroll)
+        .pipe(take(1))
+        .toPromise()
+        .then((programConfig) => {
+          console.log('ResponseGetPatientVisit:', programConfig);
+          return this.referralsHandler
+            .unenrollFromIncompatiblePrograms(this.patient, programConfig)
+            .toPromise();
+        })
+        .then((res) => {
+          console.log('ResponseUnenroll:', res);
+          return this.programManagerService
+            .enrollPatient(enrollPayload)
+            .pipe(take(1))
+            .toPromise();
+        })
+        .then((program) => {
+          console.log('ResponseEnrollPatient:', program);
+          this.checkGroupEnrollment(programToEnroll);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
+
+  private async assignModelWithTimeout(modelUuid: string): Promise<string> {
+    const result = await Promise.race([
+      this.assignModel(modelUuid),
+      new Promise((resolve) => setTimeout(() => resolve(''), 5000)) // Timeout set to 5 seconds
+    ]);
+    return result as string; // Explicitly cast the result to string
+  }
+
   public handleProgramManagerRedirects(data: any): void {
     const step = ['step', 3];
     this.patientTransferService

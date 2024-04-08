@@ -27,6 +27,7 @@ export class ProgramManagerService {
   ) {}
 
   public enrollPatient(payload) {
+    console.log('RequestEnroll:');
     return this.patientReferralService.createUpdatePatientEnrollment(payload);
   }
 

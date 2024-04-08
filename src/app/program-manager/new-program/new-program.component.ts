@@ -862,9 +862,12 @@ export class NewProgramComponent
   }
 
   public showDcGroupUnEnrollmentModal(modal: TemplateRef<any>) {
+    console.log('We Came');
     if (this.autoEnrolFromGroup && this.patientCurrentGroups.length > 0) {
+      console.log('We Came , We Saw');
       this.modalRef = this.modalService.show(modal, { class: 'modal-lg' });
     } else {
+      console.log('We Came , We Conquered');
       this.showEnrollmentFormsOrEnrollOnValidation();
     }
   }

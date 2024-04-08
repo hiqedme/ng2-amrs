@@ -80,22 +80,25 @@ export class GroupEnrollmentComponent implements OnInit, OnDestroy {
   }
 
   public onEnrollmentTypeChange($event: MatRadioChange) {
-    let enrolledInDc = false;
-    let enrolledInOtz = false;
+    let enrolledInGroupModel = false;
+    const enrolledInOtz = false;
+    const groupModels = [];
+    groupModels.push(
+      'a74f5be3-19bf-44a9-b9d8-14ff5587df37', // PFARG
+      '6d5d10b3-ea80-4ee5-a58e-5f8a6f88ae93', // PCARG
+      '7299b930-4866-437e-a879-aefbb5bf2e0b', // HCARG
+      'f16403bb-c5df-46ba-afce-14f8aea2fabd', // FCARG
+      '10275c77-e317-4b48-b95e-279053d55cd0' // HFARG
+    );
+
     _.forEach(this.currentEnrolledPrograms, (currentProgram) => {
-      if (
-        currentProgram.programUuid === '334c9e98-173f-4454-a8ce-f80b20b7fdf0'
-      ) {
-        enrolledInDc = true;
-      } else if (
-        currentProgram.programUuid === '203571d6-a4f2-4953-9e8b-e1105e2340f5'
-      ) {
-        enrolledInOtz = true;
+      if (groupModels.includes(currentProgram)) {
+        enrolledInGroupModel = true;
       }
     });
 
-    if (!enrolledInDc) {
-      this.errorMessage = `Patient needs to be enrolled in DC program first.`;
+    if (!enrolledInGroupModel) {
+      this.errorMessage = `Patient needs to be enrolled in Group Model first.`;
     } else if (!enrolledInOtz) {
       this.errorMessage = `Patient needs to be enrolled in OTZ program first.`;
     }
@@ -122,7 +125,7 @@ export class GroupEnrollmentComponent implements OnInit, OnDestroy {
       this.searchResults.length === 0 &&
       results.length > 0
     ) {
-      this.errorMessage = `Patient needs to be enrolled in DC program first.`;
+      this.errorMessage = `Patient needs to be enrolled in DC program firsts 1.`;
     } else {
       this.errorMessage = null;
     }
