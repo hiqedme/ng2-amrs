@@ -100,6 +100,12 @@ const PMTCT_DSD_MODEL: Program = {
   dept: 'HIV',
   compatibleWithOtherDeptPrograms: true
 };
+const HIV_SERVICE: Program = {
+  uuid: 'a89ef6fa-1350-11df-a1f1-0026b9348838',
+  name: 'HIV_SERVICE',
+  dept: 'HIV',
+  compatibleWithOtherDeptPrograms: true
+};
 
 // end new programs
 
@@ -119,5 +125,6 @@ export const Programs = {
   COMMUNTIY_PHARMACY_MODEL,
   FAMILY_COMMUNITY_ART_GROUP_MODEL,
   STANDARD_PMTCT_MODEL,
-  PMTCT_DSD_MODEL
+  PMTCT_DSD_MODEL,
+  HIV_SERVICE
 };
