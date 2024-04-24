@@ -187,6 +187,7 @@ export class ProgramManagerBaseComponent implements OnInit {
       if (department.name === 'HIV') {
         console.log('department  is HIV');
         if (patientStatus) {
+          console.log('Patient is Positive');
           return _.filter(department.programs, (program) => {
             const programs = _.map(
               this.availablePrograms,
@@ -194,6 +195,7 @@ export class ProgramManagerBaseComponent implements OnInit {
             );
             console.log('ProgramFaith', program.uuid);
             console.log('ProgramFaith', program.status);
+            console.log('ProgramFaith', programs);
 
             // Additional condition to filter by positivity
             const isPositive = program.status === 'positive_new'; // Replace 'positive' with the actual property or condition

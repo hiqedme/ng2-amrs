@@ -297,7 +297,7 @@ export class NewProgramComponent
       dashboardRoutesConfig.programs,
       (_r: any) => _r['programUuid'] === this.newlyEnrolledProgram.program.uuid
     );
-
+    console.log('TheRoute:', route);
     const _route =
       '/patient-dashboard/patient/' +
       this.patient.uuid +

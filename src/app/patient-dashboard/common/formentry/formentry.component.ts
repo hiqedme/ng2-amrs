@@ -776,10 +776,6 @@ export class FormentryComponent implements OnInit, OnDestroy {
         programToEnroll = 'e950ade1-041d-4dda-b0cd-bb81dad8694e';
         // name: 'PMTCT DSD MODEL',
         break;
-      case 'a89ef6fa-1350-11df-a1f1-0026b9348838':
-        programToEnroll = '9cd9b27d-5f07-4c1d-87f2-d79aa045f2e8';
-        // name: 'HIV SERVICE',
-        break;
 
       case 'f930b22e-8b8e-4b8c-8d19-4c34a5d34a5e':
         programToEnroll = '7299b930-4866-437e-a879-aefbb5bf2e0b';
@@ -795,8 +791,9 @@ export class FormentryComponent implements OnInit, OnDestroy {
     console.log('Form Filled: ', this.form);
 
     const searchResult = await this.form.searchNodeByQuestionId('dsdModel');
+    console.log('SearchREsult: ', searchResult);
     if (Array.isArray(searchResult)) {
-      modelSelected = searchResult;
+      modelSelected = searchResult[0].control.value;
     }
 
     if (modelSelected.length === 0) {
@@ -821,11 +818,7 @@ export class FormentryComponent implements OnInit, OnDestroy {
 
     console.log('ModelSelected: ', modelSelected);
 
-    const modelUuid =
-      modelSelected[0] &&
-      modelSelected[0].initialValue &&
-      modelSelected[0].initialValue.value &&
-      modelSelected[0].initialValue.value.uuid;
+    const modelUuid = modelSelected;
 
     if (!modelUuid) {
       console.error('Error: Model UUID not found.');
@@ -846,8 +839,6 @@ export class FormentryComponent implements OnInit, OnDestroy {
       enrollmentUuid: ''
     };
 
-    console.log('ResponseEnrollPayload:', enrollPayload);
-
     try {
       this.referralsHandler
         .getPatientProgramVisitConfigs(this.patient, programToEnroll)
@@ -855,30 +846,65 @@ export class FormentryComponent implements OnInit, OnDestroy {
         .toPromise()
         .then((programConfig) => {
           console.log('ResponseGetPatientVisit:', programConfig);
-          return this.referralsHandler
-            .unenrollFromIncompatiblePrograms(this.patient, programConfig)
-            .toPromise();
-        })
-        .then((res) => {
-          console.log('ResponseUnenroll:', res);
-          return this.programManagerService
-            .enrollPatient(enrollPayload)
-            .pipe(take(1))
-            .toPromise();
-        })
-        .then((program) => {
-          console.log('ResponseEnrollPatient:', program);
-          this.checkGroupEnrollment(programToEnroll);
+
+          // Introduce a delay of 3 seconds before proceeding to the next step
+          setTimeout(() => {
+            return this.referralsHandler
+              .unenrollFromIncompatiblePrograms(this.patient, programConfig)
+              .toPromise()
+              .then((res) => {
+                console.log('', res);
+
+                // Introduce a delay of 3 seconds before proceeding to the next step
+                setTimeout(() => {
+                  return this.programManagerService
+                    .enrollPatient(enrollPayload)
+                    .pipe(take(1))
+                    .toPromise()
+                    .then((program) => {
+                      console.log('ResponseEnrollPatient:', program);
+                      this.checkGroupEnrollment(programToEnroll);
+                    });
+                }, 3000);
+              });
+          }, 3000);
         })
         .catch((error) => {
           console.error('Error:', error);
         });
+
+      // this.referralsHandler
+      //   .getPatientProgramVisitConfigs(this.patient, programToEnroll)
+      //   .pipe(take(1))
+      //   .toPromise()
+      //   .then((programConfig) => {
+      //     $timeout($scope.delayedFunction, 3000);
+      //     console.log('ResponseGetPatientVisit:', programConfig);
+      //     return this.referralsHandler
+      //       .unenrollFromIncompatiblePrograms(this.patient, programConfig)
+      //       .toPromise()
+      //       .then((res) => {
+      //         console.log('', res);
+      //         return this.programManagerService
+      //           .enrollPatient(enrollPayload)
+      //           .pipe(take(1))
+      //           .toPromise()
+      //           .then((program) => {
+      //             console.log('ResponseEnrollPatient:', program);
+      //             this.checkGroupEnrollment(programToEnroll);
+      //           });
+      //       });
+      //   })
+
+      //   .catch((error) => {
+      //     console.error('Error:', error);
+      //   });
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
-  private async assignModelWithTimeout(modelUuid: string): Promise<string> {
+  private async assignModelWithTimeout(modelUuid: any): Promise<string> {
     const result = await Promise.race([
       this.assignModel(modelUuid),
       new Promise((resolve) => setTimeout(() => resolve(''), 5000)) // Timeout set to 5 seconds
@@ -1651,9 +1677,12 @@ export class FormentryComponent implements OnInit, OnDestroy {
     this.failedPayloadTypes = null;
     // this.showSuccessDialog = true;
     this.updatePatientDemographics(response);
-    this.enrollPatientToNewModel(response);
+
     // handle referrals here
     this.handleFormReferrals(response);
+    setTimeout(() => {
+      this.enrollPatientToNewModel(response);
+    }, 1);
   }
 
   private handleFormReferrals(data: any) {

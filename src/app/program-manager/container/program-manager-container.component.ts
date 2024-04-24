@@ -12,5 +12,6 @@ export class ProgramManagerContainerComponent implements OnInit {
 
   public ngOnInit() {
     this.queryParams = this.route.snapshot.queryParams;
+    console.log('ProgramManager-queryParams', this.queryParams);
   }
 }

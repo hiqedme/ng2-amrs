@@ -1173,19 +1173,19 @@
           {{ successText }}
           <strong>{{ createdPatient?.person.display | uppercase }}</strong>
         </div>
-        <button
+       <!--X <button
           type="button"
           class="btn btn-primary"
           (click)="loadDashboard(createdPatient)"
         >
           Load Patient Dashboard
-        </button>
+        </button>-->
         <button
           style="margin-left: 20px"
           class="btn btn-primary"
           (click)="loadProgramManager(createdPatient)"
         >
-          Enroll into Model
+          Select Patient Status
         </button>
         <button
           type="button"

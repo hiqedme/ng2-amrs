@@ -101,8 +101,8 @@ const PMTCT_DSD_MODEL: Program = {
   compatibleWithOtherDeptPrograms: true
 };
 const HIV_SERVICE: Program = {
-  uuid: 'a89ef6fa-1350-11df-a1f1-0026b9348838',
-  name: 'HIV_SERVICE',
+  uuid: '7843bd0e-2309-44dd-963b-1380789c372c',
+  name: 'HIV SERVICE',
   dept: 'HIV',
   compatibleWithOtherDeptPrograms: true
 };
