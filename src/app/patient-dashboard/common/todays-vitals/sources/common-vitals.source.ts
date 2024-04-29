@@ -83,6 +83,13 @@ export class CommonVitalsSource implements VitalSourceInterface {
           order: 8,
           value: ob.value.display
         });
+      case 'a89d200a-1350-11df-a1f1-0026b9348838':
+        return this.vitalModel.createVital({
+          name: 'artstart',
+          label: 'ARTStartDate:',
+          order: 8,
+          value: ob.value.display
+        });
       default:
         return this.vitalModel;
     }
