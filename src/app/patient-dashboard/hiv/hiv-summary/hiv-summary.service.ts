@@ -58,7 +58,6 @@ export class HivSummaryService {
           console.error(error);
         }
       );
-
     return hivSummary;
   }
 

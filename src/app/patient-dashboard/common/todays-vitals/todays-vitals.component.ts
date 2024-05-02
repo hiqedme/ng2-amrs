@@ -14,6 +14,7 @@ import { Vital } from '../../../models/vital.model';
 import { TodaysVitalsService } from './todays-vitals.service';
 import { OncologyTriageSource } from './sources/oncology-triage.source';
 import { ZScoreSource } from './sources/z-score.source';
+import { HivSummaryService } from '../../hiv/hiv-summary/hiv-summary.service';
 
 @Component({
   selector: 'todays-vitals',
@@ -27,13 +28,21 @@ export class TodaysVitalsComponent implements OnInit, OnDestroy {
   public currentPatientSub: Subscription;
   public loadingTodaysVitals = false;
   public dataLoaded = false;
+  public subscription: Subscription[] = [];
+  public patientUUID: any;
+  public error: any;
+  public hivSummary: any;
+  public isHEIActive: any;
   public showAll = false;
+  public artStartDate: any;
   private vitalSources: any[] = [];
 
   constructor(
     private patientService: PatientService,
     private vitalService: TodaysVitalsService,
-    private encounterResourceService: EncounterResourceService
+
+    private encounterResourceService: EncounterResourceService,
+    private hivSummaryService: HivSummaryService
   ) {}
 
   public ngOnInit(): void {
@@ -43,7 +52,10 @@ export class TodaysVitalsComponent implements OnInit, OnDestroy {
       OncologyTriageSource,
       ZScoreSource
     ];
+
     this.subscribeToPatientChangeEvent();
+    console.log('UuID: ', this.patientUUID);
+    console.log('PatInet: ', this.currentPatientSub);
   }
 
   public ngOnDestroy(): void {
@@ -51,7 +63,34 @@ export class TodaysVitalsComponent implements OnInit, OnDestroy {
       this.currentPatientSub.unsubscribe();
     }
   }
+  public getArtStartDate(patientUUID) {
+    // const birthdate = this.patient.person.birthdate;
+    // if (Moment().diff(Moment(birthdate), 'months') <= 18) {
+    //   this.isHEIActive = true;
+    // } else {
+    //   this.isHEIActive = true;
+    // }
+    const summary = this.hivSummaryService
+      .getHivSummary(patientUUID, 0, 5, true, this.isHEIActive)
+      .subscribe(
+        (result) => {
+          console.log('ResultingData: ', result);
+          // this.hivSummary = data && data.length > 0 ? data[0] : null;
+          // console.log("Data: ",  data);
+          this.artStartDate = this.hivSummary.arv_first_regimen_start_date;
 
+          console.log('ARTStRtDate: ', this.artStartDate);
+
+          // this.isBusy = false;
+        },
+        (err) => {
+          this.error =
+            'An error occured while loading Hiv Summary. Please try again.';
+          // this.isBusy = false;
+        }
+      );
+    this.subscription.push(summary);
+  }
   public toggleMore() {
     this.showAll = !this.showAll;
   }
@@ -129,6 +168,8 @@ export class TodaysVitalsComponent implements OnInit, OnDestroy {
       (patient) => {
         if (patient) {
           this.patient = patient;
+          this.patientUUID = this.patient.openmrsModel.uuid; // _openmrsModel.uuid;
+          this.getArtStartDate(this.patientUUID);
           this.getTodaysVitals(patient);
         }
       }

@@ -187,7 +187,7 @@ export class NewProgramComponent
         this.tick().then(() => {
           this.nextStep = true;
           this.currentStep++;
-          this.title = 'Start ' + this.department + ' Program';
+          this.title = 'Start ' + this.department + ' Care';
         });
       }
     } else {

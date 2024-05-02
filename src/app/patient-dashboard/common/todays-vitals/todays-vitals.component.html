@@ -29,12 +29,21 @@
           >
             |
           </span>
+        
+        </span>
+      </ng-container>
+      <ng-container>
+        <span  style="color: #239629">ARTStartDate:
+        </span>
+        <span  style="color: #444"> {{artStartDate}}
         </span>
       </ng-container>
       <i (click)="toggleMore()" class="fa fa-ellipsis-h" aria-hidden="true"></i>
     </li>
+    
   </ul>
 </div>
+
 <ul *ngIf="!todaysVitals" class="list-group">
   <li class="list-group-item">
     <span *ngIf="!dataLoaded && !loadingTodaysVitals">

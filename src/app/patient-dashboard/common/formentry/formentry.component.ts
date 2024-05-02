@@ -788,10 +788,10 @@ export class FormentryComponent implements OnInit, OnDestroy {
   public async enrollPatientToNewModel(data: any): Promise<void> {
     let programToEnroll = '';
     let modelSelected: any[] = [];
-    console.log('Form Filled: ', this.form);
+    // console.log('Form Filled: ', this.form);
 
     const searchResult = await this.form.searchNodeByQuestionId('dsdModel');
-    console.log('SearchREsult: ', searchResult);
+    //  console.log('SearchREsult: ', searchResult);
     if (Array.isArray(searchResult)) {
       modelSelected = searchResult[0].control.value;
     }
@@ -806,17 +806,19 @@ export class FormentryComponent implements OnInit, OnDestroy {
       const facilityModelResult = await this.form.searchNodeByQuestionId(
         'facilityModel'
       );
-
+      console.log('moreIntenseResult: ', moreIntenseResult);
+      console.log('communityModelResult: ', communityModelResult);
+      console.log('facilityModelResult: ', facilityModelResult);
       if (Array.isArray(moreIntenseResult)) {
-        modelSelected = moreIntenseResult;
+        modelSelected = moreIntenseResult[0].control.value;
       } else if (Array.isArray(communityModelResult)) {
-        modelSelected = communityModelResult;
+        modelSelected = communityModelResult[0].control.value;
       } else if (Array.isArray(facilityModelResult)) {
-        modelSelected = facilityModelResult;
+        modelSelected = facilityModelResult[0].control.value;
       }
     }
 
-    console.log('ModelSelected: ', modelSelected);
+    //  console.log('ModelSelected: ', modelSelected);
 
     const modelUuid = modelSelected;
 
@@ -827,7 +829,7 @@ export class FormentryComponent implements OnInit, OnDestroy {
 
     programToEnroll = await this.assignModelWithTimeout(modelUuid);
 
-    console.log('programToEnroll:', programToEnroll);
+    // console.log('programToEnroll:', programToEnroll);
 
     const enrollPayload = {
       programUuid: programToEnroll,
@@ -848,26 +850,25 @@ export class FormentryComponent implements OnInit, OnDestroy {
           console.log('ResponseGetPatientVisit:', programConfig);
 
           // Introduce a delay of 3 seconds before proceeding to the next step
-          setTimeout(() => {
-            return this.referralsHandler
-              .unenrollFromIncompatiblePrograms(this.patient, programConfig)
-              .toPromise()
-              .then((res) => {
-                console.log('', res);
-
-                // Introduce a delay of 3 seconds before proceeding to the next step
-                setTimeout(() => {
-                  return this.programManagerService
-                    .enrollPatient(enrollPayload)
-                    .pipe(take(1))
-                    .toPromise()
-                    .then((program) => {
-                      console.log('ResponseEnrollPatient:', program);
-                      this.checkGroupEnrollment(programToEnroll);
-                    });
-                }, 3000);
-              });
-          }, 3000);
+          // setTimeout(() => {
+          return this.referralsHandler
+            .unenrollFromIncompatiblePrograms(this.patient, programConfig)
+            .toPromise()
+            .then((res) => {
+              console.log('', res);
+              // Introduce a delay of 3 seconds before proceeding to the next step
+              //    setTimeout(() => {
+              return this.programManagerService
+                .enrollPatient(enrollPayload)
+                .pipe(take(1))
+                .toPromise()
+                .then((program) => {
+                  // console.log('ResponseEnrollPatient:', program);
+                  this.checkGroupEnrollment(programToEnroll);
+                });
+              //   }, 3000);
+            });
+          //  }, 3000);
         })
         .catch((error) => {
           console.error('Error:', error);
