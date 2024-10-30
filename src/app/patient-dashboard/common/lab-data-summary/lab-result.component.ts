@@ -115,8 +115,8 @@ export class LabResultComponent implements OnInit, OnDestroy {
     hpv: {
       test: 'HPV Test'
     },
-    efgr: {
-      test: 'eFGR Test'
+    egfr: {
+      test: 'eGFR Test'
     }
   };
 
